@@ -57,7 +57,7 @@
 
 /* CREATE WIDGET AREAS
 ------------------------------------------------------------------------------------ */
-/*
+	/*
 	function create_widget( $name, $id, $description ) {
 		$args = array(
 			'name'          => __( $name ),
@@ -77,18 +77,18 @@
 	// This can now be called as many times as you like to create as many widgets as you need
 	// PLEASE NOTE THE ID MUST BE IN LOWECASE
 	create_widget( 'Widget Name', 'lowercase_id', 'Widget Description');
-*/
+	*/
 
 /* ENABLE SUPPORT FOR THUMBNAILS
 ------------------------------------------------------------------------------------ */
-/*
+	/*
 	add_theme_support( 'post-thumbnails' ); 
-*/
+	*/
 
 
 /* ENABLE SELECTION OF FRONT END STYLES TO BE SELECTED IN POST / PAGE EDITOR
 ------------------------------------------------------------------------------------ */
-/*
+	/*
 	// Add stylesheet for wordpress text editor
 	function add_text_editor_styles() {
 	    add_editor_style( 'custom-editor-style.css' );
@@ -129,5 +129,5 @@
 	} 
 	// Attach callback to 'tiny_mce_before_init' 
 	add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );
-*/
+	*/
 ?>
