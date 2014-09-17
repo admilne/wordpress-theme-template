@@ -1,6 +1,6 @@
-<!-- SINGLE.PHP -->	
 <?php get_header(); ?>
-
+	<!-- SINGLE.PHP -->	
+	
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	
 		<h3><?php the_title(); ?></h3>
