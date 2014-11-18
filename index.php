@@ -15,9 +15,7 @@
 
 
 
-	<?php if( dynamic_sidebar( 'myWidgetName')): ?>
-
-	<?php else: ?>
+	<?php if( !dynamic_sidebar( 'myWidgetName')): ?>
 		<!--Enter HTML code here to let the user know the widget couldn’t be loaded-->
 		<p>Your widget has not been created yet. Please go to your wordpress admin > appearence > widgets
 	<?php endif; ?>
