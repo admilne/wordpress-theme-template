@@ -10,21 +10,16 @@
 ------------------------------------------------------------------------------------ */
 
 	function theme_styles() {
-		// These add the style sheets to every single page. Configure them as necessary
-		// wp_enqueue_style( 'normalize', get_template_directory_uri() . '/a/css/normalize.css'  );
-
-		//This is an example of adding google fonts to your theme
-		//wp_enqueue_style( 'googlefonts','http://fonts.googleapis.com?famil=font+name');
-
-		//This adds your main CSS file into your theme
-		wp_enqueue_style( 'main', get_template_directory_uri() . '/style.css'  );
+		// Format should be wp_enqueue_style( '{{ handle-name }}', '{{ path/to/css/file.css }}'  );
 		
-		// This will register a style sheet, and then using the if statement, only load the style sheet for a
-		// particular page
-		// wp_register_style ('individualPageStyle',  get_template_directory_uri() . '/css/individualPageStyle.css');
-		// if ( is_page( 'individualPage') ) {
-		// 	wp_enqueue_style( ' individualPageStyle' );
-		// }
+			wp_enqueue_style( 'main', get_template_directory_uri() . '/style.css'  );
+			// wp_enqueue_style( 'googlefonts','http://fonts.googleapis.com?famil=font+name');
+
+		// You can register a style sheet to only load for a particular page as follows
+			// wp_register_style ('individualPageStyle',  get_template_directory_uri() . '/css/individualPageStyle.css');
+			// if ( is_page( 'individualPage') ) {
+			// 	wp_enqueue_style( ' individualPageStyle' );
+			// }
 	}
 	// This function is used to tell the wp_enqueue_scripts hook to load our theme stylesheet files
 	add_action( 'wp_enqueue_scripts', 'theme_styles' );
