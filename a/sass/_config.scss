@@ -1,0 +1,94 @@
+/* Call in sass functions
+------------------------------------------------------------------------------------ */
+	
+	@import 'mixins';
+
+
+/* Set nescessary variables
+------------------------------------------------------------------------------------ */
+
+	// Colours
+
+	$white					: #ffffff;
+	$black					: #231f20;
+
+	// Colour Useage
+
+	$primary-color			: red;
+	$secondary-color		: blue;
+
+	// Font Stacks
+
+	$primary-font			: 'Open Sans', sans-serif;
+
+	// Footer Height - this is required if you want to use the sticky footer
+
+	$footer-height			: em(80);
+
+
+/* Optional Modules
+------------------------------------------------------------------------------------ */	
+
+	@import 'reset'; // Add CSS reset
+	@import 'sticky-footer'; //Include styles for sticky footer
+	@import 'wp-defaults'; // Include required WP default styles
+
+
+/* Set Base styles
+------------------------------------------------------------------------------------ */
+
+	body {
+		color: $primary-color;
+		font-family: $primary-font;
+	}
+
+	.page-wrapper {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: em(36);
+	}
+
+	h2 {
+		font-size: em(30);
+	}
+
+	h3 {
+		font-size: em(24);
+	}
+
+	p {
+		font-size: em(12);
+		margin-bottom: 1em;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	a {
+		color: $primary-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	ul {
+		margin-left: 36px;
+		margin-bottom: 1em;
+	}
+
+	.header {
+		position: relative;
+	}
+
+/* Optional Extras
+------------------------------------------------------------------------------------ */
+
+	@import 'wp-blogposts';
+	@import 'wp-burgermenu';
+

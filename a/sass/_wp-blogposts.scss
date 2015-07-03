@@ -1,0 +1,28 @@
+/* WORDPRESS BLOG LAYOUT */
+	.blog-posts {
+		overflow:hidden; 
+
+		.blog-post {
+			margin-bottom: 20px;
+			clear: left;
+			overflow: hidden;
+
+			img {
+				float: left;
+				margin-right: 10px;
+				width: 136px;
+			}
+
+			.blog-content {
+				overflow: hidden; 
+
+				h2 {
+					margin-bottom: 4px;
+				}
+
+				p {
+					margin-bottom: 4px;
+				}
+			}
+		}
+	}
