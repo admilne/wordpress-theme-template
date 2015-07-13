@@ -11,3 +11,7 @@ blockquote:before, blockquote:after, q:before, q:after {content:"";}
 blockquote, q {quotes:"" "";}
 a img {border:none;}
 img {max-width:100%; height: auto;}
+
+/* Box sizing - only works in IE8+ - http://caniuse.com/#feat=css3-boxsizing */
+html {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+*, *:before, *:after {-webkit-box-sizing: inherit;-moz-box-sizing: inherit;box-sizing: inherit;}

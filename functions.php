@@ -221,4 +221,90 @@
 		); 
 		return get_pages($args);
 	}
+
+	// Display the cookie message if necessary
+	function cookie_message()
+	{
+		if(empty($_SESSION['cookie_message_shown'])) {
+			$_SESSION['cookie_message_shown'] = 1;
+			echo('<div class="cookie-message" id="cookie-message">This site uses cookies, your continued use implies you agree with our cookie policy. <a href="#" id="dismiss">Dismiss</a></div>');
+		}
+	}
+
+	// Display the main menu
+	function main_menu()
+	{
+		$args = array(
+			'theme_location'	=> '', // (string) (optional) The location in the theme to be used--must be registered with register_nav_menu() in order to be selectable by the user
+			'menu'				=> 'main', // (string) (optional) The menu that is desired; accepts (matching in order) id, slug, name
+			'container'			=> 'false', // (string) (optional) Whether to wrap the ul, and what to wrap it with. Allowed tags are div and nav. Use false for no container
+			'container_class'	=> '', // (string) (optional) The class that is applied to the container
+			'container_id'		=> '', // (string) (optional) The ID that is applied to the container
+			'menu_class'		=> 'main-menu', // (string) (optional) The class that is applied to the ul element which encloses the menu items. Multiple classes can be separated with spaces.
+			'menu_id'			=> 'main-menu', // (string) (optional) The ID that is applied to the ul element which encloses the menu items.
+			'echo'				=> true, // (boolean) (optional) Whether to echo the menu or return it. For returning menu use false
+			'fallback_cb'		=> 'wp_page_menu', // (string) (optional) If the menu doesn't exist, the fallback function to use. Set to false for no fallback
+			'before'			=> '', // (string) (optional) Output text before the <a> of the link
+			'after'				=> '', // (string) (optional) Output text after the </a> of the link
+			'link_before'		=> '', // (string) (optional) Output text before the link text
+			'link_after'		=> '', // (string) (optional) Output text after the link text
+			'items_wrap'		=> '<ul id="%1$s" class="%2$s">%3$s</ul>', // (string) (optional) Evaluated as the format string argument of a sprintf() expression. The format string incorporates the other parameters by numbered token. %1$s is expanded to the value of the 'menu_id' parameter, %2$s is expanded to the value of the 'menu_class' parameter, and %3$s is expanded to the value of the list items. If a numbered token is omitted from the format string, the related parameter is omitted from the menu markup. Note: To exclude the items wrap (for instance, if the wrap is built into your theme), you still need to pass %3$s as the parameter. If you pass an empty string, your menu won't display at all.
+			'depth'				=> 0, // (integer) (optional) How many levels of the hierarchy are to be included where 0 means all. -1 displays links at any depth and arranges them in a single, flat list.
+			'walker'			=> '' // (object) (optional) Custom walker object to use (Note: You must pass an actual object to use, not a string)
+		);
+
+		wp_nav_menu ($args);
+	}
+
+	// Get meta information about an image when provided with the id
+	function wp_get_attachment( $attachment_id ) {
+
+		$attachment = get_post( $attachment_id );
+		return array(
+			'alt' => get_post_meta( $attachment->ID, '_wp_attachment_image_alt', true ),
+			'caption' => $attachment->post_excerpt,
+			'description' => $attachment->post_content,
+			'href' => get_permalink( $attachment->ID ),
+			'src' => $attachment->guid,
+			'title' => $attachment->post_title
+		);
+	}
+
+	// Get the distance between two lat/long positions
+	function distance($lat1, $lon1, $lat2, $lon2, $unit = "M") {
+
+		$theta = $lon1 - $lon2;
+		$dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+		$dist = acos($dist);
+		$dist = rad2deg($dist);
+		$miles = $dist * 60 * 1.1515;
+		$unit = strtoupper($unit);
+
+		if ($unit == "K") {
+			return ($miles * 1.609344);
+		} else if ($unit == "N") {
+			return ($miles * 0.8684);
+		} else {
+			return $miles;
+		}
+	}
+
+	function get_lat_and_long($address, $postcode) {
+		$url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($address) . "&sensor=false";
+
+		$result = file_get_contents($url);
+		$resultArray = json_decode($result, true);
+
+		$lat_and_long['latitude'] = $resultArray['results'][0]['geometry']['location']['lat'];
+		$lat_and_long['longitude'] = $resultArray['results'][0]['geometry']['location']['lng'];
+
+		// Get the town based purely on postcode for more accurate result:
+		$address_url = "http://maps.googleapis.com/maps/api/geocode/json?address=" . urlencode($postcode) . "&sensor=false";
+		$address_json = json_decode(file_get_contents($address_url));
+		$address_data = $address_json->results[0]->address_components;
+
+		$lat_and_long['google_town'] = $address_data[2]->long_name;
+
+		return $lat_and_long;
+	}
 ?>

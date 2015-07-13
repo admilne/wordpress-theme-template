@@ -12,10 +12,14 @@
 	$white					: #ffffff;
 	$black					: #231f20;
 
-	// Colour Usage
+	// Font Colour Usage
 
 	$primary-color			: red;
 	$secondary-color		: blue;
+
+	// Background Colour Usage
+
+	$primary-bg-color		: $white;
 
 	// Font Stacks
 
@@ -68,6 +72,11 @@
 		}
 	}
 
+	ul {
+		margin-left: 36px;
+		margin-bottom: 1em;
+	}
+
 	a {
 		color: $primary-color;
 		text-decoration: none;
@@ -77,14 +86,6 @@
 		}
 	}
 
-	ul {
-		margin-left: 36px;
-		margin-bottom: 1em;
-	}
-
-	.header {
-		position: relative;
-	}
 
 /* Optional Extras
 ------------------------------------------------------------------------------------ */

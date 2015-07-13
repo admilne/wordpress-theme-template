@@ -1,19 +1,14 @@
 <?php get_header(); ?>
-	<!-- SINGLE.PHP -->	
-	
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-	
-		<h1><?php the_title(); ?></h1>
-		<?php the_content(); ?>
+<!-- SINGLE.PHP -->
 
-		<!--This code allows someone to leave comments on your page-->
-		<?php comments_template(); ?>
+<div class="blog-posts primary-content">
+	<?php get_template_part('partials/content', 'wploop'); ?>
+</div><!-- END blog-posts -->
 
-		
-	<?php endwhile; else: ?>
-	
-		<p>There are no posts or pages here</p>
-	
+<div class="sidebar">
+	<?php if( !dynamic_sidebar( 'Blog sidebar')): ?>
+		<!-- This widget could not be loaded -->
 	<?php endif; ?>
+</div>
 
 <?php get_footer(); ?>
